@@ -47,8 +47,25 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // When a user tries to 'edit' an item in the table, this function gets called
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            
+            // Remove from array
+            toDoList.removeAtIndex(indexPath.row)
+            
+            // Remove from storage
+            NSUserDefaults.standardUserDefaults().setObject(toDoList, forKey: "toDoList")
+            
+            // Update our table
+            toDoListTable.reloadData()
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         
+        // Update our table
         toDoListTable.reloadData()
     }
 

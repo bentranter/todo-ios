@@ -18,6 +18,9 @@ class SecondViewController: UIViewController {
         
         // Clear the input once an item is added
         item.text = ""
+        
+        //Update NSUserDefaults
+        NSUserDefaults.standardUserDefaults().setObject(toDoList, forKey: "toDoList")
     }
     
     override func viewDidLoad() {
